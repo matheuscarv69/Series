@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import firebase from 'firebase';
+
 import FormRow from "../components/FormRow";
 
 export default class LoginPage extends React.Component {
@@ -11,6 +13,19 @@ export default class LoginPage extends React.Component {
       mail: "",
       password: "",
     };
+  }
+  componentDidMount() {
+    var firebaseConfig = {
+      apiKey: "AIzaSyA-qekKsUlYP9jtabu4AtnqZ1FocfH8tl8",
+      authDomain: "series-5baf2.firebaseapp.com",
+      databaseURL: "https://series-5baf2.firebaseio.com",
+      projectId: "series-5baf2",
+      storageBucket: "series-5baf2.appspot.com",
+      messagingSenderId: "906474762899",
+      appId: "1:906474762899:web:48fbfbb9c6e61198539366",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
   }
 
   onChangeHandler(field, value) {
@@ -35,7 +50,7 @@ export default class LoginPage extends React.Component {
             onChangeText={(value) => this.onChangeHandler("mail", value)}
           />
         </FormRow>
-        
+
         <FormRow last>
           <TextInput
             style={styles.input}
