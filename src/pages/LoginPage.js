@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import FormRow from "../components/FormRow";
 
@@ -20,6 +20,10 @@ export default class LoginPage extends React.Component {
     });
   }
 
+  tryLogin(){
+    console.log(this.state);
+  }
+  
   render() {
     return (
       <View style={styles.container}>
@@ -41,7 +45,9 @@ export default class LoginPage extends React.Component {
             onChangeText={value => this.onChangeHandler('password',value)}
           />
         </FormRow>
-        <Text>Entrar</Text>
+        <Button title="Entrar" 
+            onPress={() => this.tryLogin()}/>
+        
       </View>
     );
   }
