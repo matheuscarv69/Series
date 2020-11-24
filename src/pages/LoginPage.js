@@ -4,50 +4,49 @@ import { StatusBar } from "expo-status-bar";
 import FormRow from "../components/FormRow";
 
 export default class LoginPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
-      mail: '',
-      password: '',
-    }
-
+      mail: "",
+      password: "",
+    };
   }
 
-  onChangeHandler(field, value){
+  onChangeHandler(field, value) {
     this.setState({
-      [field]: value
+      [field]: value,
     });
   }
 
-  tryLogin(){
+  tryLogin() {
     console.log(this.state);
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar style="light" />
-        <FormRow>
-          <TextInput 
-          style={styles.input} 
-          placeholder="Email" 
-          value={this.state.mail}
-          onChangeText={value => this.onChangeHandler('mail',value)}
+        <FormRow first>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={this.state.mail}
+            onChangeText={(value) => this.onChangeHandler("mail", value)}
           />
         </FormRow>
-        <FormRow>
+        
+        <FormRow last>
           <TextInput
             style={styles.input}
             placeholder="Senha"
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={value => this.onChangeHandler('password',value)}
+            onChangeText={(value) => this.onChangeHandler("password", value)}
           />
         </FormRow>
-        <Button title="Entrar" 
-            onPress={() => this.tryLogin()}/>
-        
+
+        <Button title="Entrar" onPress={() => this.tryLogin()} />
       </View>
     );
   }
