@@ -125,11 +125,6 @@ export default class LoginPage extends React.Component {
     );
   }
 
-  // renderButton() {
-  //   if (this.state.isLoading) return <ActivityIndicator color="#000" />;
-  //   return <Button title="Entrar" onPress={() => this.tryLogin()} />;
-  // }
-
   renderButton(){
     if(this.state.isLoading) return <ActivityIndicator color="#000"/>
     return <CustomButton onPress={ () => this.tryLogin() }/>
