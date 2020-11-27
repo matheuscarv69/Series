@@ -12,6 +12,7 @@ import { StatusBar } from "expo-status-bar";
 import firebase from "firebase";
 
 import FormRow from "../components/FormRow";
+import CustomButton from "../components/CustomButton";
 
 export default class LoginPage extends React.Component {
   constructor(props) {
@@ -69,11 +70,13 @@ export default class LoginPage extends React.Component {
           return Alert.alert(
             "Usuário não encontrado",
             "Deseja criar um cadastro com as informações inseridas?",
-            [{
+            [
+              {
                 text: "Não",
                 onPress: () => console.log("Usuário não quer criar conta"),
                 style: "cancel", //ios
-              }, {
+              },
+              {
                 text: "Sim",
                 onPress: () => {
                   firebase
@@ -81,14 +84,14 @@ export default class LoginPage extends React.Component {
                     .createUserWithEmailAndPassword(mail, password)
                     .then(loginUserSucess)
                     .catch(loginUserFailed);
-                }
-              }],
+                },
+              },
+            ],
             { cancelable: false }
-          )
+          );
           return;
-        } 
+        }
         loginUserFailed(error);
-        
       })
       .then(() => this.setState({ isLoading: false }));
   }
@@ -122,9 +125,14 @@ export default class LoginPage extends React.Component {
     );
   }
 
-  renderButton() {
-    if (this.state.isLoading) return <ActivityIndicator />;
-    return <Button title="Entrar" onPress={() => this.tryLogin()} />;
+  // renderButton() {
+  //   if (this.state.isLoading) return <ActivityIndicator color="#000" />;
+  //   return <Button title="Entrar" onPress={() => this.tryLogin()} />;
+  // }
+
+  renderButton(){
+    if(this.state.isLoading) return <ActivityIndicator color="#000"/>
+    return <CustomButton onPress={ () => this.tryLogin() }/>
   }
 
   render() {
